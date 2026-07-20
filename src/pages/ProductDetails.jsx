@@ -1,7 +1,8 @@
 import { useEffect, useState, useContext} from "react";
-import { useParams } from "react-router-dom";
+import { useParams,Link } from "react-router-dom";
 import { getProduct } from "../services/api";
-// import { CartContext } from "../context/CartContext";
+import { CartContext } from "../context/CartContext";
+import { toast } from "react-toastify";
 
 function ProductDetails() {
 
@@ -9,7 +10,7 @@ function ProductDetails() {
 
     const [product, setProduct] = useState(null);
 
-    // const { addToCart } = useContext(CartContext);
+    const { addToCart } = useContext(CartContext);
 
     useEffect(() => {
 
@@ -35,6 +36,10 @@ function ProductDetails() {
 
         <div className="product-details">
 
+            <Link to="/" className="back-link">
+             ←
+            </Link>
+
             <img
                 src={product.image}
                 alt={product.title}
@@ -49,8 +54,13 @@ function ProductDetails() {
 
                 <p>{product.description}</p>
 
-               <button>Add to cart</button>
-
+             <button className="add-cart-btn"
+             onClick={() => {
+             addToCart(product);
+             toast.success("Item added to cart successfully!");
+             }}>
+             Add to Cart
+             </button>
             </div>
 
         </div>

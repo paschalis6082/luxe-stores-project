@@ -6,6 +6,7 @@ function Home() {
 
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
+  const[error , setError] = useState ("");
 
   useEffect(() => {
     async function loadProducts() {
@@ -14,6 +15,7 @@ function Home() {
         setProducts(data);
       } catch (error) {
         console.log(error);
+        setError("Failed to load products. Please check your internet connection and try again.")
       } finally {
         setLoading(false);
       }
@@ -27,6 +29,13 @@ function Home() {
       <div className="loading">
         <div className="spinner"></div>
         <p>Loading products...</p>
+      </div>
+    );
+  }
+  if (error) {
+    return(
+      <div className="error-message">
+        <h2>{error}</h2>
       </div>
     );
   }

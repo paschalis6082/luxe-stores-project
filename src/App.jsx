@@ -6,9 +6,11 @@ import Home from "./pages/Home";
 
 import ProductDetails from "./pages/ProductDetails";
 
-// import Cart from "./pages/Cart";
+import Cart from "./pages/Cart";
 
 import "./App.css";
+
+import { ToastContainer } from "react-toastify";
 
 function App() {
 
@@ -18,16 +20,15 @@ function App() {
 
       <Navbar />
 
+      <ToastContainer position="top-center" />
+
       <Routes>
 
         <Route path="/" element={<Home />} />
 
-        {/* <Route path="/cart" element={<Cart />} /> */}
+        <Route path="/cart" element={<Cart />} /> 
 
-        <Route
-          path="/product/:id"
-          element={<ProductDetails />}
-        />
+        <Route path="/product/:id" element={<ProductDetails />} />
 
       </Routes>
 
